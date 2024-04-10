@@ -1,4 +1,4 @@
-sudo apt install keychain -y
+sudo apt install keychain sudo -y
 
 cat <<'EOF'>> /etc/profile.d/keep_wsl_running.sh
 #!/usr/bin/env sh
@@ -7,3 +7,4 @@ EOF
 
 keychain -k all
 
+sudo reboot
