@@ -12,10 +12,20 @@ cat <<'EOL'>> $path
 RootLogin off
 RequireValidShell off
 <Limit LOGIN>
-    DenyGroup !userftp
+    DenyGroup !ftp-users
 </Limit>
 <IfModule mod_facts.c>
     FactsAdvertise off
 </IfModule>
 EOL
 
+echo "Criando um grupo de acesso ao ftp (ftp-users)"
+sudo addgroup ftp-users
+echo
+echo "Adicionando o usuário ao grupo de acesso ao ftp (ftp-users)"
+echo "sudo adduser $USER userftp"
+sudo adduser $USER userftp
+echo
+echo "Reiniciando o serviço ftp"
+sudo systemctl restart proftpd
+echo
